@@ -13,18 +13,18 @@ class SetUpPage: UIViewController {
     @IBOutlet weak var numPillsTxtFld: UITextField!
     @IBOutlet weak var numPlacebosTxtFld: UITextField!
     @IBOutlet weak var numDaysOffTxtFld: UITextField!
-    @IBOutlet weak var pillAlertTxtFld: UITextField!
-    @IBOutlet weak var placeboAlertTxtFld: UITextField!
-    @IBOutlet weak var refillAlertTxtFld: UITextField!
     
-    @IBAction func goTouched(_ sender: Any) {
-        UserDefaults.standard.set(numPillsTxtFld.text, forKey: "numPills")
-        UserDefaults.standard.set(numPlacebosTxtFld.text, forKey: "numPlacebos")
-        UserDefaults.standard.set(numDaysOffTxtFld.text, forKey: "numDaysOff")
-        UserDefaults.standard.set(pillAlertTxtFld.text, forKey: "pillAlert")
-        UserDefaults.standard.set(placeboAlertTxtFld.text, forKey: "placeboAlert")
-        UserDefaults.standard.set(refillAlertTxtFld.text, forKey: "refillAlert")
-        performSegue(withIdentifier: "toMainSegue", sender: self)
+    @IBAction func goTouched(_ sender: UIButton) {
+        GlobalVariable.numPills = numPillsTxtFld.text!
+        GlobalVariable.numPlacebos = numPlacebosTxtFld.text!
+        GlobalVariable.numDaysOff = numDaysOffTxtFld.text!
+        performSegue(withIdentifier: "toMainSegue", sender: UIButton())
+    }
+    
+    struct GlobalVariable {
+        static var numPills = String()
+        static var numPlacebos = String()
+        static var numDaysOff = String()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -54,3 +54,4 @@ class SetUpPage: UIViewController {
     */
 
 }
+
