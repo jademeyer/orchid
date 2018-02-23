@@ -13,8 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var month: UILabel!
     @IBAction func goToday(_ sender: AnyObject) {
-        let date = NSDate()
-        calendarView.scrollToDate(date as Date)
+        calendarView.scrollToDate(Date(), animateScroll: true)
         calendarView.selectDates([Date()])
     }
     
@@ -30,8 +29,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         calendarView.reloadData(withanchor: Date())
-        calendarView.scrollToDate(Date(), triggerScrollToDateDelegate: true)
+        calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])
         calendarView.visibleDates { dateSegment in
             self.setupCalendarView(dateSegment: dateSegment)
